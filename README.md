@@ -1,5 +1,4 @@
-# ddd-support [![Build Status](https://travis-ci.org/wingsofovnia/ddd-support.svg?branch=master)](https://travis-ci
-.org/wingsofovnia/ddd-support)
+# ddd-support [![Build Status](https://travis-ci.org/wingsofovnia/ddd-support.svg?branch=master)](https://travis-ci.org/wingsofovnia/ddd-support)
 Supportive classes and interfaces for implementing domain driven development
 
 ## Bugs and Feedback
