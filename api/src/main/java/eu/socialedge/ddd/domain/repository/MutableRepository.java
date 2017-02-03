@@ -7,18 +7,14 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 /**
- * Extends {@link Repository} with mutable operations for adding and
- * removing elements
+ * Represents a fully mutable {@link Repository} with {@code #add(*)},
+ * {@code #remove(*)} and {@code #clear()} methods.
  *
  * @param <ID> concrete {@link Identifier} type implementation
  * @param <T> {@link AggregateRoot} type implementation
  */
 public interface MutableRepository<ID extends Identifier<?>, T extends AggregateRoot<ID>>
-        extends Repository<ID, T> {
-
-    void add(T entity);
-
-    void add(Collection<T> entities);
+        extends ExpandableRepository<ID, T> {
 
     boolean remove(ID id);
 
