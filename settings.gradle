@@ -1,3 +1,4 @@
 include 'api'
 include 'spring-repository'
+include 'spring-cloud-stream'
 

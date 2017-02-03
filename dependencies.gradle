@@ -8,7 +8,7 @@ ext {
             springDataJpa: '1.11.0.RELEASE'
         ],
         bus: [
-            springCloudStreamKafka: '1.1.1.RELEASE'
+            springCloudStream: '1.1.1.RELEASE'
         ],
         gen: [
             lombok: '1.16.+',
@@ -16,6 +16,7 @@ ext {
         ],
         test: [
             junit: '4.+',
+            springBootTest: '1.4.4.RELEASE',
             assertj: '3.6.+',
             mockito: '2.2.+'
         ]
@@ -30,7 +31,7 @@ ext {
             springDataJpa: "org.springframework.data:spring-data-jpa:${versions.persistence.springDataJpa}"
         ],
         bus: [
-            springCloudStreamKafka: "org.springframework.cloud:spring-cloud-starter-stream-kafka:${versions.bus.springCloudStreamKafka}"
+            springCloudStream: "org.springframework.cloud:spring-cloud-stream:${versions.bus.springCloudStream}",
         ],
         gen: [
             lombok: "org.projectlombok:lombok:${versions.gen.lombok}",
@@ -40,6 +41,10 @@ ext {
             junit: [
                 "junit:junit:${versions.test.junit}",
                 "org.assertj:assertj-core:${versions.test.assertj}"
+            ],
+            springCloudStreamTest: [
+                "org.springframework.boot:spring-boot-starter-test:${versions.test.springBootTest}",
+                "org.springframework.cloud:spring-cloud-stream-test-support:${versions.bus.springCloudStream}"
             ],
             mockito: "org.mockito:mockito-core:${versions.test.mockito}"
         ]
