@@ -1,9 +1,17 @@
 group 'eu.socialedge.ddd'
 version '0.1-SNAPSHOT'
 
-apply plugin: 'java'
+subprojects {
+    apply from: "$rootDir/dependencies.gradle"
 
-repositories {
-    mavenLocal()
-    mavenCentral()
+    apply plugin: 'java'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly libraries.gen.lombok
+    }
 }

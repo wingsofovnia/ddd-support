@@ -1,0 +1,43 @@
+ext {
+    versions = [
+        commons: [
+            apacheLang3: '3.5'
+        ],
+        persistence: [
+            jpaApi: '1.0.0.Final',
+        ],
+        bus: [
+            springCloudStreamKafka: '1.1.1.RELEASE'
+        ],
+        gen: [
+            lombok: '1.16.+'
+        ],
+        test: [
+            junit: '4.+',
+            assertj: '3.6.+',
+            mockito: '2.2.+'
+        ]
+    ]
+
+    libraries = [
+        commons: [
+            apacheLang3: "org.apache.commons:commons-lang3:${versions.commons.apacheLang3}"
+        ],
+        persistence: [
+            jpaApi: "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:${versions.persistence.jpaApi}"
+        ],
+        bus: [
+            springCloudStreamKafka: "org.springframework.cloud:spring-cloud-starter-stream-kafka:${versions.bus.springCloudStreamKafka}"
+        ],
+        gen: [
+            lombok: "org.projectlombok:lombok:${versions.gen.lombok}"
+        ],
+        test: [
+            junit: [
+                "junit:junit:${versions.test.junit}",
+                "org.assertj:assertj-core:${versions.test.assertj}"
+            ],
+            mockito: "org.mockito:mockito-core:${versions.test.mockito}"
+        ]
+    ]
+}

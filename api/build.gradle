@@ -1,0 +1,4 @@
+dependencies {
+    compile libraries.commons.apacheLang3
+    compile libraries.persistence.jpaApi
+}
