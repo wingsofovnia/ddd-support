@@ -5,12 +5,14 @@ ext {
         ],
         persistence: [
             jpaApi: '1.0.0.Final',
+            springDataJpa: '1.11.0.RELEASE'
         ],
         bus: [
             springCloudStreamKafka: '1.1.1.RELEASE'
         ],
         gen: [
-            lombok: '1.16.+'
+            lombok: '1.16.+',
+            hibernateJpaModel: '5.2.5.Final'
         ],
         test: [
             junit: '4.+',
@@ -24,13 +26,15 @@ ext {
             apacheLang3: "org.apache.commons:commons-lang3:${versions.commons.apacheLang3}"
         ],
         persistence: [
-            jpaApi: "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:${versions.persistence.jpaApi}"
+            jpaApi: "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:${versions.persistence.jpaApi}",
+            springDataJpa: "org.springframework.data:spring-data-jpa:${versions.persistence.springDataJpa}"
         ],
         bus: [
             springCloudStreamKafka: "org.springframework.cloud:spring-cloud-starter-stream-kafka:${versions.bus.springCloudStreamKafka}"
         ],
         gen: [
-            lombok: "org.projectlombok:lombok:${versions.gen.lombok}"
+            lombok: "org.projectlombok:lombok:${versions.gen.lombok}",
+            jpaModel: "org.hibernate:hibernate-jpamodelgen:${versions.gen.hibernateJpaModel}"
         ],
         test: [
             junit: [

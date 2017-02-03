@@ -50,3 +50,4 @@ gradle-app.setting
 .gradletasknamecache
 gradle/
 gradlew*
+**/src/main/generated/

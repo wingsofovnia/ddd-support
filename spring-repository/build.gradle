@@ -1,0 +1,5 @@
+dependencies {
+    compile project(":api")
+
+    compile libraries.persistence.springDataJpa
+}
