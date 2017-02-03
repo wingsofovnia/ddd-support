@@ -1,0 +1,9 @@
+group 'eu.socialedge.ddd'
+version '0.1-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
