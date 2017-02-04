@@ -38,9 +38,8 @@ public class SpringRepositoryTest {
     @Test
     public void shouldContainSavedEntity() {
         val entity = persistRandomEntity();
-        val entityId = entity.id();
 
-        assertTrue(entityRepository.contains(entityId));
+        assertTrue(entityRepository.contains(entity.id()));
     }
 
     @Test
@@ -54,9 +53,8 @@ public class SpringRepositoryTest {
     @Test
     public void shouldRetrieveEntityCorrectly() {
         val entity = persistRandomEntity();
-        val entityId = entity.id();
 
-        val savedEntityOpt = entityRepository.get(entityId);
+        val savedEntityOpt = entityRepository.get(entity.id());
 
         assertTrue(savedEntityOpt.isPresent());
         assertEquals(entity, savedEntityOpt.get());

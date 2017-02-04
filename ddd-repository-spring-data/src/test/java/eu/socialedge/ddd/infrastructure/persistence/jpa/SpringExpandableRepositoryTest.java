@@ -38,12 +38,11 @@ public class SpringExpandableRepositoryTest {
     @Test
     public void shouldAddEnt1tyCorrectly() {
         val entity = randomEnt1ty();
-        val entityId = entity.id();
 
         entityRepository.add(entity);
         assertEquals(1L, entityRepository.size());
 
-        val savedEntityOpt = entityRepository.get(entityId);
+        val savedEntityOpt = entityRepository.get(entity.id());
 
         assertTrue(savedEntityOpt.isPresent());
         assertEquals(entity, savedEntityOpt.get());
@@ -59,20 +58,18 @@ public class SpringExpandableRepositoryTest {
 
         assertTrue(entityRepository.size() == entities.size());
         assertTrue(entities.containsAll(savedEntities));
-        assertTrue(savedEntities.containsAll(entities));
     }
 
     @Test
     @Transactional
     public void shouldListenEnt1tyChanges() {
         val entity = randomEnt1ty();
-        val entityId = entity.id();
 
         entityRepository.add(entity);
 
         entity.field = "FAILED?";
 
-        val savedEntity = entityRepository.get(entityId).get();
+        val savedEntity = entityRepository.get(entity.id()).get();
         assertEquals(entity, savedEntity);
     }
 

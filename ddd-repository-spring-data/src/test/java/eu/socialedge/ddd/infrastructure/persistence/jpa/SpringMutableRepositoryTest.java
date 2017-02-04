@@ -48,11 +48,10 @@ public class SpringMutableRepositoryTest {
     @Test
     public void shouldRemoveEntityByIdCorrectly() {
         val entity = randomEnt1ty();
-        val entityId = entity.id();
 
         entityRepository.add(entity);
 
-        entityRepository.remove(entityId);
+        entityRepository.remove(entity.id());
         assertTrue(entityRepository.isEmpty());
     }
 
