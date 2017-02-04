@@ -37,24 +37,24 @@ public class SpringMindfulRepositoryTest {
 
     @Test
     public void shouldActivateEntityCorrectly() {
-        val randEntity = randomMindfulEnt1ty(false);
-        val randEntityId = randEntity.id();
-        entityRepository.add(randEntity);
+        val entity = randomMindfulEnt1ty(false);
+        val entityId = entity.id();
+        entityRepository.add(entity);
 
-        entityRepository.activate(randEntityId);
+        entityRepository.activate(entityId);
 
-        assertTrue(entityRepository.get(randEntityId).get().isActive());
+        assertTrue(entityRepository.get(entityId).get().isActive());
     }
 
     @Test
     public void shouldDeactivateEntityCorrectly() {
-        val randEntity = randomMindfulEnt1ty(true);
-        val randEntityId = randEntity.id();
-        entityRepository.add(randEntity);
+        val entity = randomMindfulEnt1ty(true);
+        val entityId = entity.id();
+        entityRepository.add(entity);
 
-        entityRepository.deactivate(randEntityId);
+        entityRepository.deactivate(entityId);
 
-        assertFalse(entityRepository.get(randEntityId).get().isActive());
+        assertFalse(entityRepository.get(entityId).get().isActive());
     }
 
     @Test
@@ -65,11 +65,11 @@ public class SpringMindfulRepositoryTest {
         val activeRandEntities = randomMindfulEnt1ties(5);
         entityRepository.add(activeRandEntities);
 
-        val activeRepoEntities = entityRepository.listActive();
+        val activeSavedEntities = entityRepository.listActive();
 
-        assertEquals(activeRandEntities.size(), activeRepoEntities.size());
-        assertTrue(activeRepoEntities.containsAll(activeRandEntities));
-        assertTrue(activeRandEntities.containsAll(activeRepoEntities));
+        assertEquals(activeRandEntities.size(), activeSavedEntities.size());
+        assertTrue(activeSavedEntities.containsAll(activeRandEntities));
+        assertTrue(activeRandEntities.containsAll(activeSavedEntities));
     }
 
     @Test
@@ -91,18 +91,18 @@ public class SpringMindfulRepositoryTest {
         entityRepository.add(randActiveEntities);
         entityRepository.add(randInactiveEntities);
 
-        val repoActiveEntities = entityRepository.listActive();
-        assertEquals(randActiveEntities.size(), repoActiveEntities.size());
-        assertTrue(repoActiveEntities.containsAll(randActiveEntities));
-        assertTrue(randActiveEntities.containsAll(repoActiveEntities));
+        val savedActiveEntities = entityRepository.listActive();
+        assertEquals(randActiveEntities.size(), savedActiveEntities.size());
+        assertTrue(savedActiveEntities.containsAll(randActiveEntities));
+        assertTrue(randActiveEntities.containsAll(savedActiveEntities));
 
-        val repoAllEntities = entityRepository.list();
-        val randEntitiesUnion = Stream
+        val savedAllEntities = entityRepository.list();
+        val entitiesUnion = Stream
             .concat(randActiveEntities.stream(), randInactiveEntities.stream())
             .collect(Collectors.toList());
 
-        assertEquals(randEntitiesUnion.size(), repoAllEntities.size());
-        assertTrue(randEntitiesUnion.containsAll(repoAllEntities));
-        assertTrue(repoAllEntities.containsAll(randEntitiesUnion));
+        assertEquals(entitiesUnion.size(), savedAllEntities.size());
+        assertTrue(entitiesUnion.containsAll(savedAllEntities));
+        assertTrue(savedAllEntities.containsAll(entitiesUnion));
     }
 }

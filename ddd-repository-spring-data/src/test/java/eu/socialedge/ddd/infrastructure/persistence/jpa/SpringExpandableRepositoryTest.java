@@ -37,46 +37,46 @@ public class SpringExpandableRepositoryTest {
 
     @Test
     public void shouldAddEnt1tyCorrectly() {
-        val randEntity = randomEnt1ty();
-        val randEntityId = randEntity.id();
+        val entity = randomEnt1ty();
+        val entityId = entity.id();
 
-        entityRepository.add(randEntity);
+        entityRepository.add(entity);
 
         assertFalse(entityRepository.isEmpty());
         assertTrue(entityRepository.size() == 1L);
 
-        val repoEntityOpt = entityRepository.get(randEntityId);
+        val savedEntityOpt = entityRepository.get(entityId);
 
-        assertTrue(repoEntityOpt.isPresent());
-        assertEquals(randEntity, repoEntityOpt.get());
+        assertTrue(savedEntityOpt.isPresent());
+        assertEquals(entity, savedEntityOpt.get());
     }
 
     @Test
     public void shouldAddEnt1tyListCorrectly() {
-        val randEntities = randomEnt1ties(5);
+        val entities = randomEnt1ties(5);
 
-        entityRepository.add(randEntities);
+        entityRepository.add(entities);
 
-        val repoEntities = entityRepository.list();
+        val savedEntities = entityRepository.list();
 
-        assertFalse(repoEntities.isEmpty());
-        assertTrue(entityRepository.size() == randEntities.size());
-        assertTrue(randEntities.containsAll(repoEntities));
-        assertTrue(repoEntities.containsAll(randEntities));
+        assertFalse(savedEntities.isEmpty());
+        assertTrue(entityRepository.size() == entities.size());
+        assertTrue(entities.containsAll(savedEntities));
+        assertTrue(savedEntities.containsAll(entities));
     }
 
     @Test
     @Transactional
     public void shouldListenEnt1tyChanges() {
-        val randEntity = randomEnt1ty();
-        val randEntityId = randEntity.id();
+        val entity = randomEnt1ty();
+        val entityId = entity.id();
 
-        entityRepository.add(randEntity);
+        entityRepository.add(entity);
 
-        randEntity.field = "FAILED?";
+        entity.field = "FAILED?";
 
-        val repoEntity = entityRepository.get(randEntityId).get();
-        assertEquals(randEntity, repoEntity);
+        val savedEntity = entityRepository.get(entityId).get();
+        assertEquals(entity, savedEntity);
     }
 
     @Test(expected = RepositoryException.class)

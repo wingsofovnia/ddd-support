@@ -37,54 +37,54 @@ public class SpringRepositoryTest {
 
     @Test
     public void shouldContainSavedEntity() {
-        val randEntity = persistRandomEntity();
-        val randEntityId = randEntity.id();
+        val entity = persistRandomEntity();
+        val entityId = entity.id();
 
-        assertTrue(entityRepository.contains(randEntityId));
+        assertTrue(entityRepository.contains(entityId));
     }
 
     @Test
     public void shouldReturnCorrectSize() {
-        val randEntities = persistRandomEnt1ties(5);
+        val entities = persistRandomEnt1ties(5);
 
         assertFalse(entityRepository.isEmpty());
-        assertEquals(randEntities.size(), (int) entityRepository.size());
+        assertEquals(entities.size(), (int) entityRepository.size());
     }
 
     @Test
     public void shouldRetrieveEntityCorrectly() {
-        val randEntity = persistRandomEntity();
-        val randEntityId = randEntity.id();
+        val entity = persistRandomEntity();
+        val entityId = entity.id();
 
-        val repoEntityOpt = entityRepository.get(randEntityId);
+        val savedEntityOpt = entityRepository.get(entityId);
 
-        assertTrue(repoEntityOpt.isPresent());
-        assertEquals(randEntity, repoEntityOpt.get());
+        assertTrue(savedEntityOpt.isPresent());
+        assertEquals(entity, savedEntityOpt.get());
     }
 
     @Test
     public void shouldRetrieveEntityListCorrectly() {
-        val randEntities = persistRandomEnt1ties(5);
+        val entities = persistRandomEnt1ties(5);
 
-        val repoEntities = entityRepository.list();
+        val savedEntities = entityRepository.list();
 
-        assertFalse(repoEntities.isEmpty());
-        assertEquals(randEntities.size(), (int) entityRepository.size());
-        assertTrue(randEntities.containsAll(repoEntities));
-        assertTrue(repoEntities.containsAll(randEntities));
+        assertFalse(savedEntities.isEmpty());
+        assertEquals(entities.size(), (int) entityRepository.size());
+        assertTrue(entities.containsAll(savedEntities));
+        assertTrue(savedEntities.containsAll(entities));
     }
 
     private Ent1ty persistRandomEntity() {
-        val randEntity = randomEnt1ty();
+        val entity = randomEnt1ty();
 
-        entityManager.persist(randEntity);
-        return randEntity;
+        entityManager.persist(entity);
+        return entity;
     }
 
     private Collection<Ent1ty> persistRandomEnt1ties(int size) {
-        val randEntities = randomEnt1ties(size);
+        val entities = randomEnt1ties(size);
 
-        randEntities.forEach(entityManager::persist);
-        return randEntities;
+        entities.forEach(entityManager::persist);
+        return entities;
     }
 }

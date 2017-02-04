@@ -1,5 +1,6 @@
 package eu.socialedge.ddd.infrastructure.persistence.jpa;
 
+import eu.socialedge.ddd.domain.Entity;
 import eu.socialedge.ddd.infrastructure.persistence.jpa.domain.repository.Ent1tyMutableRepository;
 import lombok.val;
 import org.junit.Before;
@@ -36,35 +37,35 @@ public class SpringMutableRepositoryTest {
 
     @Test
     public void shouldRemoveEntityCorrectly() {
-        val randEntity = randomEnt1ty();
+        val entity = randomEnt1ty();
 
-        entityRepository.add(randEntity);
+        entityRepository.add(entity);
 
-        entityRepository.remove(randEntity);
+        entityRepository.remove(entity);
         assertTrue(entityRepository.isEmpty());
         assertTrue(entityRepository.size() == 0);
     }
 
     @Test
     public void shouldRemoveEntityByIdCorrectly() {
-        val randEntity = randomEnt1ty();
-        val randEntityId = randEntity.id();
+        val entity = randomEnt1ty();
+        val entityId = entity.id();
 
-        entityRepository.add(randEntity);
+        entityRepository.add(entity);
 
-        entityRepository.remove(randEntityId);
+        entityRepository.remove(entityId);
         assertTrue(entityRepository.isEmpty());
         assertTrue(entityRepository.size() == 0);
     }
 
     @Test
     public void shouldRemoveEntitiesByIdListCorrectly() {
-        val randEntities = randomEnt1ties(5);
-        val randEntitiesId = randEntities.stream().map(e -> e.id()).collect(Collectors.toList());
+        val entities = randomEnt1ties(5);
+        val entitiesId = entities.stream().map(Entity::id).collect(Collectors.toList());
 
-        entityRepository.add(randEntities);
+        entityRepository.add(entities);
 
-        entityRepository.remove(randEntitiesId);
+        entityRepository.remove(entitiesId);
         assertTrue(entityRepository.isEmpty());
         assertTrue(entityRepository.size() == 0);
     }
