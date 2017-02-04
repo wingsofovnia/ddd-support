@@ -68,7 +68,6 @@ public class SpringRepositoryTest {
 
         val savedEntities = entityRepository.list();
 
-        assertFalse(savedEntities.isEmpty());
         assertEquals(entities.size(), (int) entityRepository.size());
         assertTrue(entities.containsAll(savedEntities));
         assertTrue(savedEntities.containsAll(entities));

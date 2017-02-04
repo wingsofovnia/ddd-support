@@ -43,7 +43,6 @@ public class SpringMutableRepositoryTest {
 
         entityRepository.remove(entity);
         assertTrue(entityRepository.isEmpty());
-        assertTrue(entityRepository.size() == 0);
     }
 
     @Test
@@ -55,7 +54,6 @@ public class SpringMutableRepositoryTest {
 
         entityRepository.remove(entityId);
         assertTrue(entityRepository.isEmpty());
-        assertTrue(entityRepository.size() == 0);
     }
 
     @Test
@@ -67,7 +65,6 @@ public class SpringMutableRepositoryTest {
 
         entityRepository.remove(entitiesId);
         assertTrue(entityRepository.isEmpty());
-        assertTrue(entityRepository.size() == 0);
     }
 
     @Test
@@ -76,6 +73,5 @@ public class SpringMutableRepositoryTest {
 
         entityRepository.clear();
         assertTrue(entityRepository.isEmpty());
-        assertTrue(entityRepository.size() == 0);
     }
 }

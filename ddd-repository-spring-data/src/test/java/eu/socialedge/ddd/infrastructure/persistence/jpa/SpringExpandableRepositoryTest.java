@@ -41,9 +41,7 @@ public class SpringExpandableRepositoryTest {
         val entityId = entity.id();
 
         entityRepository.add(entity);
-
-        assertFalse(entityRepository.isEmpty());
-        assertTrue(entityRepository.size() == 1L);
+        assertEquals(1L, entityRepository.size());
 
         val savedEntityOpt = entityRepository.get(entityId);
 
@@ -59,7 +57,6 @@ public class SpringExpandableRepositoryTest {
 
         val savedEntities = entityRepository.list();
 
-        assertFalse(savedEntities.isEmpty());
         assertTrue(entityRepository.size() == entities.size());
         assertTrue(entities.containsAll(savedEntities));
         assertTrue(savedEntities.containsAll(entities));
