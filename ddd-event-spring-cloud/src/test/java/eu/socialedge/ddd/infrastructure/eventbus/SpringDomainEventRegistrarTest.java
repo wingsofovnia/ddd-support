@@ -2,7 +2,6 @@ package eu.socialedge.ddd.infrastructure.eventbus;
 
 import eu.socialedge.ddd.event.DomainEvent;
 import eu.socialedge.ddd.event.DomainEventHandler;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -66,7 +65,7 @@ public class SpringDomainEventRegistrarTest {
         verifyZeroInteractions(childDomainEventHandler);
     }
 
-    @Test @Ignore
+    @Test
     public void shouldCallAllHandlersDespiteExceptions() {
         eventRegistrar.registerEventHandler(firstHandler, DomainEvent.class);
         eventRegistrar.registerEventHandler(firstHandler, DomainEvent.class);

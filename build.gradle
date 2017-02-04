@@ -12,7 +12,7 @@ buildscript {
 
 allprojects {
     group 'eu.socialedge.ddd'
-    version '0.1'
+    version '0.2'
 }
 
 subprojects {
@@ -29,6 +29,7 @@ subprojects {
 
     dependencies {
         compileOnly libraries.gen.lombok
+        testCompileOnly libraries.gen.lombok
     }
 
     task sourceJar(type: Jar) {

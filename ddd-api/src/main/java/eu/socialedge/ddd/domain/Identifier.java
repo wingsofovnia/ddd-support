@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -33,6 +30,7 @@ import java.util.Objects;
 @MappedSuperclass @Access(AccessType.FIELD)
 public abstract class Identifier<T extends Serializable> extends ValueObject {
 
+    @GeneratedValue
     @Column(name = "value", nullable = false)
     protected final T value;
 

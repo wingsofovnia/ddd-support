@@ -1,7 +1,10 @@
+description 'Provides Spring Cloud Stream - based implementation of domain event Publisher and Registrar'
+
 dependencies {
     compile project(":ddd-api")
 
     compile libraries.bus.springCloudStream
 
-    testCompile libraries.test.springCloudStreamTest
+    testCompile libraries.test.springBoot
+    testCompile libraries.test.springCloudStream
 }

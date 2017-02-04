@@ -1,5 +1,11 @@
+description 'Provides Spring Data Jpa - based implementation of domain repositories'
+
 dependencies {
     compile project(":ddd-api")
 
     compile libraries.persistence.springDataJpa
+
+    testCompile libraries.test.springBoot
+    testCompile libraries.test.springBootDataJpaStarter
+    testCompile libraries.test.h2database
 }

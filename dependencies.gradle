@@ -17,7 +17,8 @@ ext {
             ],
             test: [
                 junit: '4.+',
-                springBootTest: '1.4.4.RELEASE',
+                springBoot: '1.4.4.RELEASE',
+                h2database: '1.4.193',
                 assertj: '3.6.+',
                 mockito: '2.2.+'
             ]
@@ -51,10 +52,10 @@ ext {
                 "junit:junit:${versions.libraries.test.junit}",
                 "org.assertj:assertj-core:${versions.libraries.test.assertj}"
             ],
-            springCloudStreamTest: [
-                "org.springframework.boot:spring-boot-starter-test:${versions.libraries.test.springBootTest}",
-                "org.springframework.cloud:spring-cloud-stream-test-support:${versions.libraries.bus.springCloudStream}"
-            ],
+            springBoot: "org.springframework.boot:spring-boot-starter-test:${versions.libraries.test.springBoot}",
+            springBootDataJpaStarter: "org.springframework.boot:spring-boot-starter-data-jpa:${versions.libraries.test.springBoot}",
+            h2database: "com.h2database:h2:${versions.libraries.test.h2database}",
+            springCloudStream: "org.springframework.cloud:spring-cloud-stream-test-support:${versions.libraries.bus.springCloudStream}",
             mockito: "org.mockito:mockito-core:${versions.libraries.test.mockito}"
         ]
     ]
