@@ -51,11 +51,6 @@ public interface SpringRepository<ID extends Identifier<?>, T extends AggregateR
     }
 
     @Override
-    default boolean isEmpty() {
-        return size() == 0L;
-    }
-
-    @Override
     default Optional<T> get(ID id) {
         Validate.notNull(id, "Identifier cannot be null");
 

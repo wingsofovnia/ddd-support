@@ -3,6 +3,7 @@ package eu.socialedge.ddd.infrastructure.persistence.jpa;
 import eu.socialedge.ddd.domain.AggregateRoot;
 import eu.socialedge.ddd.domain.Identifier;
 import eu.socialedge.ddd.domain.repository.ExpandableRepository;
+import eu.socialedge.ddd.domain.repository.RepositoryException;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,9 @@ public interface SpringExpandableRepository<ID extends Identifier<?>, T extends 
     @Override
     @Transactional
     default void add(T entity) {
+        if (contains(entity.id()))
+            throw new RepositoryException("Entity already exists");
+
         exec(() -> save(entity));
     }
 

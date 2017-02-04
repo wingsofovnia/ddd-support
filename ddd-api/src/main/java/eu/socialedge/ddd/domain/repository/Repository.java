@@ -26,7 +26,9 @@ public interface Repository<ID extends Identifier<?>, T extends AggregateRoot<ID
 
     long size();
 
-    boolean isEmpty();
+    default boolean isEmpty() {
+        return size() == 0L;
+    }
 
     Optional<T> get(ID id);
 

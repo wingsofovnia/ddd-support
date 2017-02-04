@@ -1,14 +1,13 @@
 package eu.socialedge.ddd.domain;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.EmbeddedId;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
-import static java.util.Objects.requireNonNull;
+import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * A {@link ValueObject} fundamentally defined not by its
@@ -34,17 +33,21 @@ import static java.util.Objects.requireNonNull;
  *
  * @param <T> concrete {@link Identifier} type implementation
  */
-@Getter @Setter
 @EqualsAndHashCode
 @Accessors(fluent = true)
-@NoArgsConstructor(force = true, access = AccessLevel.PACKAGE)
+@NoArgsConstructor(force = true)
 @MappedSuperclass @Access(AccessType.FIELD)
 public abstract class Entity<T extends Identifier<?>> {
 
+    @Getter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EmbeddedId
     protected final T id;
 
+    @Version
+    private Long version;
+
     protected Entity(T id) {
-        this.id = requireNonNull(id);
+        this.id = notNull(id);
     }
 }

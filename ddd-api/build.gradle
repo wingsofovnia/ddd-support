@@ -1,3 +1,5 @@
+description 'Provides building blocks for domain driven development'
+
 configurations {
     jpaMetamodel
 }

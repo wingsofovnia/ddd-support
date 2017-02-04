@@ -28,13 +28,18 @@ public interface SpringMindfulRepository<ID extends Identifier<?>, T extends Dea
         extends MindfulRepository<ID, T>, SpringExpandableRepository<ID, T>, JpaSpecificationExecutor<T> {
 
     @Override
+    default boolean containsActive(ID id) {
+        val entityOpt = get(id);
+        return entityOpt.map(DeactivatableAggregateRoot::isActive).orElse(false);
+    }
+
+    @Override
     @Transactional
     default void activate(ID id) {
         val entity = get(id).orElseThrow(()
             -> new RepositoryException("Cannot activate entity: Entity not found"));
 
         entity.activate();
-        save(entity);
     }
 
     @Override
@@ -50,7 +55,6 @@ public interface SpringMindfulRepository<ID extends Identifier<?>, T extends Dea
             -> new RepositoryException("Cannot deactivate entity: Entity not found"));
 
         entity.deactivate();
-        save(entity);
     }
 
     @Override
