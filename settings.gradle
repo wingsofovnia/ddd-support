@@ -1,4 +1,4 @@
-include 'api'
-include 'spring-repository'
-include 'spring-cloud-stream'
+include 'ddd-api'
+include 'ddd-event-spring-cloud'
+include 'ddd-repository-spring-data'
 

@@ -1,10 +1,26 @@
-group 'eu.socialedge.ddd'
-version '0.1-SNAPSHOT'
+buildscript {
+    apply from: 'dependencies.gradle'
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath plug1ns.publish.jfrog.bintray
+    }
+}
+
+allprojects {
+    group 'eu.socialedge.ddd'
+    version '0.1'
+}
 
 subprojects {
-    apply from: "$rootDir/dependencies.gradle"
-
     apply plugin: 'java'
+
+    apply plugin: 'com.jfrog.bintray'
+    apply plugin: 'maven-publish'
+    apply plugin: 'maven'
 
     repositories {
         mavenLocal()
@@ -13,5 +29,45 @@ subprojects {
 
     dependencies {
         compileOnly libraries.gen.lombok
+    }
+
+    task sourceJar(type: Jar) {
+        from sourceSets.main.allJava
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+
+                artifact sourceJar {
+                    classifier "sources"
+                }
+            }
+        }
+    }
+
+    bintray {
+        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+
+        publications = ['mavenJava']
+
+        pkg {
+            repo = rootProject.name
+            name = project.name
+            userOrg = 'socialedge'
+            websiteUrl = 'http://socialedge.eu/'
+            issueTrackerUrl = 'https://github.com/wingsofovnia/ddd-support/issues'
+            licenses = ['MIT']
+            vcsUrl = 'https://github.com/wingsofovnia/ddd-support'
+
+            githubRepo = 'wingsofovnia/ddd-support'
+            githubReleaseNotesFile = 'README.md'
+
+            version {
+                vcsTag = 'v' + rootProject.version
+            }
+        }
     }
 }

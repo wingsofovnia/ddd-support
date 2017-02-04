@@ -1,52 +1,69 @@
 ext {
     versions = [
-        commons: [
-            apacheLang3: '3.5'
+        libraries: [
+            commons: [
+                apacheLang3: '3.5'
+            ],
+            persistence: [
+                jpaApi: '1.0.0.Final',
+                springDataJpa: '1.11.0.RELEASE'
+            ],
+            bus: [
+                springCloudStream: '1.1.1.RELEASE'
+            ],
+            gen: [
+                lombok: '1.16.+',
+                hibernateJpaModel: '5.2.5.Final'
+            ],
+            test: [
+                junit: '4.+',
+                springBootTest: '1.4.4.RELEASE',
+                assertj: '3.6.+',
+                mockito: '2.2.+'
+            ]
         ],
-        persistence: [
-            jpaApi: '1.0.0.Final',
-            springDataJpa: '1.11.0.RELEASE'
-        ],
-        bus: [
-            springCloudStream: '1.1.1.RELEASE'
-        ],
-        gen: [
-            lombok: '1.16.+',
-            hibernateJpaModel: '5.2.5.Final'
-        ],
-        test: [
-            junit: '4.+',
-            springBootTest: '1.4.4.RELEASE',
-            assertj: '3.6.+',
-            mockito: '2.2.+'
+        plug1ns: [
+            publish: [
+                jfrog: [
+                    bintray: '1.7.3'
+                ]
+            ]
         ]
     ]
 
     libraries = [
         commons: [
-            apacheLang3: "org.apache.commons:commons-lang3:${versions.commons.apacheLang3}"
+            apacheLang3: "org.apache.commons:commons-lang3:${versions.libraries.commons.apacheLang3}"
         ],
         persistence: [
-            jpaApi: "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:${versions.persistence.jpaApi}",
-            springDataJpa: "org.springframework.data:spring-data-jpa:${versions.persistence.springDataJpa}"
+            jpaApi: "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:${versions.libraries.persistence.jpaApi}",
+            springDataJpa: "org.springframework.data:spring-data-jpa:${versions.libraries.persistence.springDataJpa}"
         ],
         bus: [
-            springCloudStream: "org.springframework.cloud:spring-cloud-stream:${versions.bus.springCloudStream}",
+            springCloudStream: "org.springframework.cloud:spring-cloud-stream:${versions.libraries.bus.springCloudStream}",
         ],
         gen: [
-            lombok: "org.projectlombok:lombok:${versions.gen.lombok}",
-            jpaModel: "org.hibernate:hibernate-jpamodelgen:${versions.gen.hibernateJpaModel}"
+            lombok: "org.projectlombok:lombok:${versions.libraries.gen.lombok}",
+            jpaModel: "org.hibernate:hibernate-jpamodelgen:${versions.libraries.gen.hibernateJpaModel}"
         ],
         test: [
             junit: [
-                "junit:junit:${versions.test.junit}",
-                "org.assertj:assertj-core:${versions.test.assertj}"
+                "junit:junit:${versions.libraries.test.junit}",
+                "org.assertj:assertj-core:${versions.libraries.test.assertj}"
             ],
             springCloudStreamTest: [
-                "org.springframework.boot:spring-boot-starter-test:${versions.test.springBootTest}",
-                "org.springframework.cloud:spring-cloud-stream-test-support:${versions.bus.springCloudStream}"
+                "org.springframework.boot:spring-boot-starter-test:${versions.libraries.test.springBootTest}",
+                "org.springframework.cloud:spring-cloud-stream-test-support:${versions.libraries.bus.springCloudStream}"
             ],
-            mockito: "org.mockito:mockito-core:${versions.test.mockito}"
+            mockito: "org.mockito:mockito-core:${versions.libraries.test.mockito}"
+        ]
+    ]
+
+    plug1ns = [
+        publish: [
+            jfrog: [
+                bintray: "com.jfrog.bintray.gradle:gradle-bintray-plugin:${versions.plug1ns.publish.jfrog.bintray}"
+            ]
         ]
     ]
 }
