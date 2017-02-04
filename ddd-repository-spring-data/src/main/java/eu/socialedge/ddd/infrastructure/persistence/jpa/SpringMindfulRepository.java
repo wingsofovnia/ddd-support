@@ -31,7 +31,6 @@ public interface SpringMindfulRepository<ID extends Identifier<?>, T extends Dea
     default boolean containsActive(ID id) {
         val entityOpt = get(id);
         return entityOpt.map(DeactivatableAggregateRoot::isActive).orElse(false);
-
     }
 
     @Override
@@ -41,7 +40,6 @@ public interface SpringMindfulRepository<ID extends Identifier<?>, T extends Dea
             -> new RepositoryException("Cannot activate entity: Entity not found"));
 
         entity.activate();
-        save(entity);
     }
 
     @Override
@@ -57,7 +55,6 @@ public interface SpringMindfulRepository<ID extends Identifier<?>, T extends Dea
             -> new RepositoryException("Cannot deactivate entity: Entity not found"));
 
         entity.deactivate();
-        save(entity);
     }
 
     @Override
