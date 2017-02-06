@@ -25,7 +25,7 @@ public interface SpringExpandableRepository<ID extends Identifier<?>, T extends 
     @Override
     @Transactional
     default void add(T entity) {
-        if (contains(entity.id()))
+        if (contains(entity))
             throw new RepositoryException("Entity already exists");
 
         exec(() -> save(entity));
