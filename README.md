@@ -1,4 +1,4 @@
-# ddd-support [![Build Status](https://travis-ci.org/wingsofovnia/ddd-support.svg?branch=master)](https://travis-ci.org/wingsofovnia/ddd-support)
+# ddd-support [![Build Status](https://travis-ci.org/wingsofovnia/ddd-support.svg?branch=master)](https://travis-ci.org/wingsofovnia/ddd-support) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ad47bbb8fa1348c6bfaf395236cb8486)](https://www.codacy.com/app/wingsofovnia/ddd-support?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wingsofovnia/ddd-support&amp;utm_campaign=Badge_Grade) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]() 
 Supportive classes and interfaces for implementing domain driven development
 
 ## Bugs and Feedback

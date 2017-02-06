@@ -18,7 +18,7 @@ import javax.persistence.Entity;
 public class MindfulEnt1ty extends DeactivatableAggregateRoot<Ent1tyId> {
 
     @Column(nullable = false)
-    String field;
+    public String field;
 
     public MindfulEnt1ty(Ent1tyId id, String field, boolean isActive) {
         super(id, isActive);
