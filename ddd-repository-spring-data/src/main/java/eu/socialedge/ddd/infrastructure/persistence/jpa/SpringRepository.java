@@ -5,7 +5,6 @@ import eu.socialedge.ddd.domain.Identifier;
 import eu.socialedge.ddd.domain.repository.Repository;
 import eu.socialedge.ddd.domain.repository.RepositoryException;
 import lombok.val;
-import org.apache.commons.lang3.Validate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +39,8 @@ public interface SpringRepository<ID extends Identifier<?>, T extends AggregateR
 
     @Override
     default boolean contains(ID id) {
-        Validate.notNull(id, "Identifier cannot be null");
+        if (id == null)
+            return false;
 
         return exec(() -> exists(id));
     }
@@ -52,7 +52,8 @@ public interface SpringRepository<ID extends Identifier<?>, T extends AggregateR
 
     @Override
     default Optional<T> get(ID id) {
-        Validate.notNull(id, "Identifier cannot be null");
+        if (id == null)
+            return Optional.empty();
 
         return Optional.ofNullable(exec(() -> findOne(id)));
     }
@@ -62,7 +63,7 @@ public interface SpringRepository<ID extends Identifier<?>, T extends AggregateR
         val elementsIterable = exec(() -> findAll());
 
         return StreamSupport.stream(elementsIterable.spliterator(), false)
-            .collect(Collectors.toList());
+                            .collect(Collectors.toList());
     }
 
     static <E> E exec(Supplier<E> func) {
