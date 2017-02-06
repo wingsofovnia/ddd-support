@@ -25,7 +25,7 @@ public interface Repository<ID extends Identifier<?>, T extends AggregateRoot<ID
     boolean contains(ID id);
 
     default boolean contains(T entity) {
-        return entity != null && entity.id() != null && contains(entity.id());
+        return entity != null && contains(entity.id());
     }
 
     long size();
