@@ -14,13 +14,13 @@ import java.util.UUID;
 @Accessors(fluent = true)
 @EqualsAndHashCode(callSuper = false)
 @MappedSuperclass @Access(AccessType.FIELD)
-public class UuId extends Identifier<UUID> {
+public class UuId extends Identifier<String> {
 
     public UuId() {
-        super(UUID.randomUUID());
+        super(UUID.randomUUID().toString());
     }
 
     public UuId(UUID uuid) {
-        super(uuid);
+        super(uuid.toString());
     }
 }
