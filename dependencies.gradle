@@ -2,7 +2,8 @@ ext {
     versions = [
         libraries: [
             commons: [
-                apacheLang3: '3.5'
+                apacheLang3: '3.5',
+                jacksonAnnotations: '2.8.+'
             ],
             persistence: [
                 jpaApi: '1.0.0.Final',
@@ -34,7 +35,8 @@ ext {
 
     libraries = [
         commons: [
-            apacheLang3: "org.apache.commons:commons-lang3:${versions.libraries.commons.apacheLang3}"
+            apacheLang3: "org.apache.commons:commons-lang3:${versions.libraries.commons.apacheLang3}",
+            jacksonAnnotations: "com.fasterxml.jackson.core:jackson-annotations:${versions.libraries.commons.jacksonAnnotations}"
         ],
         persistence: [
             jpaApi: "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:${versions.libraries.persistence.jpaApi}",

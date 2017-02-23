@@ -1,5 +1,6 @@
 package eu.socialedge.ddd.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,6 +45,7 @@ public abstract class Entity<T extends Identifier<?>> {
     @EmbeddedId
     protected final T id;
 
+    @JsonIgnore
     @Version
     private Long version;
 
