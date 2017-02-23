@@ -14,7 +14,7 @@ import java.util.Collection;
  * @param <T> {@link AggregateRoot} type implementation
  */
 public interface ExpandableRepository <ID extends Identifier<?>, T extends AggregateRoot<ID>>
-    extends Repository<ID, T> {
+        extends Repository<ID, T> {
 
     void add(T entity);
 

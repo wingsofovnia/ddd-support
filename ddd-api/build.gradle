@@ -6,6 +6,7 @@ configurations {
 
 dependencies {
     compile libraries.commons.apacheLang3
+    compile libraries.commons.jacksonAnnotations
 
     compile libraries.persistence.jpaApi
 

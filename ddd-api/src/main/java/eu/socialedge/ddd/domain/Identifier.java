@@ -1,5 +1,6 @@
 package eu.socialedge.ddd.domain;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,6 +39,7 @@ public abstract class Identifier<T extends Serializable> extends ValueObject {
         this.value = Objects.requireNonNull(value);
     }
 
+    @JsonValue
     @Override
     public String toString() {
         return String.valueOf(value);
