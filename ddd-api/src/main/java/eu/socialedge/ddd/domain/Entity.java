@@ -1,12 +1,13 @@
 package eu.socialedge.ddd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import eu.socialedge.ddd.domain.id.Identifier;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.lang.reflect.ParameterizedType;
 
 import static org.apache.commons.lang3.Validate.notNull;
 
@@ -36,12 +37,10 @@ import static org.apache.commons.lang3.Validate.notNull;
  */
 @EqualsAndHashCode
 @Accessors(fluent = true)
-@NoArgsConstructor(force = true)
 @MappedSuperclass @Access(AccessType.FIELD)
 public abstract class Entity<T extends Identifier<?>> {
 
     @Getter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EmbeddedId
     protected final T id;
 
@@ -49,7 +48,35 @@ public abstract class Entity<T extends Identifier<?>> {
     @Version
     private Long version;
 
+    protected Entity() {
+        this.id = newIdentifier();
+    }
+
     protected Entity(T id) {
         this.id = notNull(id);
+    }
+
+    /**
+     * Creates a new instance of an {@link Identifier}.
+     * <p>
+     * This method is used to enable support of
+     * {@link eu.socialedge.ddd.domain.id.GeneratableIdentifier}.
+     * When this Entity is parametrized with a GeneratableIdentifier implementation,
+     * default constructor of this Entity will call default constructor of the
+     * GeneratableIdentifier implementation that will create auto generated identifier.
+     * <p>
+     * Otherwise, default constructor of regular {@link Identifier} will be called, that
+     * creates a null valued identifier.
+     *
+     * @return a new instance of the {@link Identifier}.
+     */
+    @SuppressWarnings("unchecked")
+    private T newIdentifier() {
+        try {
+            return (T) ((Class)((ParameterizedType)this.getClass().
+                getGenericSuperclass()).getActualTypeArguments()[0]).newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to initialize default Identifier");
+        }
     }
 }

@@ -1,5 +1,6 @@
 package eu.socialedge.ddd.domain;
 
+import eu.socialedge.ddd.domain.id.Identifier;
 import lombok.NoArgsConstructor;
 
 /**
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
  * @see <a href="https://martinfowler.com/bliki/DDD_Aggregate.html">
  *     DDD_Aggregate - Martin Fowler</a>
  */
-@NoArgsConstructor(force = true)
+@NoArgsConstructor
 public abstract class AggregateRoot<T extends Identifier<?>> extends Entity<T> {
 
     protected AggregateRoot(T id) {
