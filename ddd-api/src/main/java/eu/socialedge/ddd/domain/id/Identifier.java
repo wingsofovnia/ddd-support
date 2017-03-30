@@ -1,17 +1,21 @@
-package eu.socialedge.ddd.domain;
+package eu.socialedge.ddd.domain.id;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import eu.socialedge.ddd.domain.ValueObject;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Represents abstract identity of {@link Entity} objects.
+ * Represents abstract identity of {@link eu.socialedge.ddd.domain.Entity} objects.
  * <p>
  * You may want to rename {@link Identifier#value} param in domain-specific
  * {@link Identifier} implementation for JPA mappings. This can be easily done
@@ -25,15 +29,14 @@ import java.util.Objects;
  * @param <T> internal identifier's type
  */
 @Getter
+@NoArgsConstructor
 @Accessors(fluent = true)
 @EqualsAndHashCode(callSuper = false)
-@NoArgsConstructor(force = true)
 @MappedSuperclass @Access(AccessType.FIELD)
 public abstract class Identifier<T extends Serializable> extends ValueObject {
 
-    @GeneratedValue
     @Column(name = "value", nullable = false)
-    protected final T value;
+    protected T value;
 
     public Identifier(T value) {
         this.value = Objects.requireNonNull(value);
