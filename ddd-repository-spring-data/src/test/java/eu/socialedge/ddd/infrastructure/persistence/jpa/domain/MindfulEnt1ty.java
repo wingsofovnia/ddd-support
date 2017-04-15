@@ -20,12 +20,12 @@ public class MindfulEnt1ty extends DeactivatableAggregateRoot<Ent1tyId> {
     @Column(nullable = false)
     public String field;
 
-    public MindfulEnt1ty(Ent1tyId id, String field, boolean isActive) {
-        super(id, isActive);
+    public MindfulEnt1ty(String field, boolean isActive) {
+        super(isActive);
         this.field = field;
     }
 
-    public MindfulEnt1ty(Ent1tyId id, String field) {
-        this(id, field, true);
+    public MindfulEnt1ty(String field) {
+        this(field, true);
     }
 }

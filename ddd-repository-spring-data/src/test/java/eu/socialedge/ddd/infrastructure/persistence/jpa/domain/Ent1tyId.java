@@ -1,10 +1,14 @@
 package eu.socialedge.ddd.infrastructure.persistence.jpa.domain;
 
-import eu.socialedge.ddd.domain.Identifier;
-import lombok.NoArgsConstructor;
+import eu.socialedge.ddd.domain.id.LongIdentifier;
 
-@NoArgsConstructor(force = true)
-public class Ent1tyId extends Identifier<Long> {
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class Ent1tyId extends LongIdentifier {
+
+    public Ent1tyId() {}
+
     public Ent1tyId(Long value) {
         super(value);
     }

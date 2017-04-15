@@ -1,5 +1,6 @@
 package eu.socialedge.ddd.domain;
 
+import eu.socialedge.ddd.domain.id.Identifier;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 

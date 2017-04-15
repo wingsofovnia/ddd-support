@@ -1,14 +1,12 @@
 package eu.socialedge.ddd.infrastructure.persistence.jpa.domain.util;
 
 import eu.socialedge.ddd.infrastructure.persistence.jpa.domain.Ent1ty;
-import eu.socialedge.ddd.infrastructure.persistence.jpa.domain.Ent1tyId;
 import eu.socialedge.ddd.infrastructure.persistence.jpa.domain.MindfulEnt1ty;
 import lombok.val;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 
 public final class Ent1ties {
 
@@ -18,16 +16,13 @@ public final class Ent1ties {
 
     public static Ent1ty randomEnt1ty() {
         val randString = UUID.randomUUID().toString();
-        val randLong = ThreadLocalRandom.current().nextLong(1, 10000);
-
-        return new Ent1ty(Ent1tyId.of(randLong), randString);
+        return new Ent1ty(randString);
     }
 
     public static MindfulEnt1ty randomMindfulEnt1ty(boolean isActive) {
         val randString = UUID.randomUUID().toString();
-        val randLong = ThreadLocalRandom.current().nextLong(1, 10000);
 
-        return new MindfulEnt1ty(Ent1tyId.of(randLong), randString, isActive);
+        return new MindfulEnt1ty(randString, isActive);
     }
 
     public static MindfulEnt1ty randomMindfulEnt1ty() {

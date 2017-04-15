@@ -20,7 +20,11 @@ public class Ent1ty extends AggregateRoot<Ent1tyId> implements Cloneable {
     @Column(nullable = false)
     public String field;
 
-    public Ent1ty(Ent1tyId id, String field) {
+    public Ent1ty(String field) {
+        this.field = field;
+    }
+
+    private Ent1ty(Ent1tyId id, String field) {
         super(id);
         this.field = field;
     }
