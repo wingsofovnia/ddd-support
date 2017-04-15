@@ -1,6 +1,6 @@
 package eu.socialedge.ddd.domain;
 
-import lombok.NoArgsConstructor;
+import eu.socialedge.ddd.domain.id.Identifier;
 
 /**
  * Represents a DDD Aggregate Root - a cluster of event objects
@@ -14,8 +14,9 @@ import lombok.NoArgsConstructor;
  * @see <a href="https://martinfowler.com/bliki/DDD_Aggregate.html">
  *     DDD_Aggregate - Martin Fowler</a>
  */
-@NoArgsConstructor(force = true)
 public abstract class AggregateRoot<T extends Identifier<?>> extends Entity<T> {
+
+    protected AggregateRoot() {}
 
     protected AggregateRoot(T id) {
         super(id);

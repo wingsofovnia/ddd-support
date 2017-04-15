@@ -1,13 +1,14 @@
 package eu.socialedge.ddd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import eu.socialedge.ddd.domain.id.Identifier;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
+import static eu.socialedge.ddd.util.Generics.constructParentTypeInstance;
 import static org.apache.commons.lang3.Validate.notNull;
 
 /**
@@ -36,18 +37,23 @@ import static org.apache.commons.lang3.Validate.notNull;
  */
 @EqualsAndHashCode
 @Accessors(fluent = true)
-@NoArgsConstructor(force = true)
 @MappedSuperclass @Access(AccessType.FIELD)
 public abstract class Entity<T extends Identifier<?>> {
 
     @Getter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EmbeddedId
     protected final T id;
 
     @JsonIgnore
     @Version
     private Long version;
+
+    /**
+     * Creates an instance with Identifier, built using default constructor
+     */
+    protected Entity() {
+        this.id = constructParentTypeInstance(this.getClass(), 0);
+    }
 
     protected Entity(T id) {
         this.id = notNull(id);

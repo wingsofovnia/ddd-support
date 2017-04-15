@@ -1,7 +1,7 @@
 package eu.socialedge.ddd.domain.repository;
 
 import eu.socialedge.ddd.domain.DeactivatableAggregateRoot;
-import eu.socialedge.ddd.domain.Identifier;
+import eu.socialedge.ddd.domain.id.Identifier;
 
 import java.util.Collection;
 import java.util.Optional;
