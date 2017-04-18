@@ -1,5 +1,6 @@
 package eu.socialedge.ddd.domain;
 
+import eu.socialedge.ddd.domain.id.Identifier;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;

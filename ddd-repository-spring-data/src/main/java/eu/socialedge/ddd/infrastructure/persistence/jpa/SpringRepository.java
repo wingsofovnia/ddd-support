@@ -1,7 +1,7 @@
 package eu.socialedge.ddd.infrastructure.persistence.jpa;
 
 import eu.socialedge.ddd.domain.AggregateRoot;
-import eu.socialedge.ddd.domain.Identifier;
+import eu.socialedge.ddd.domain.id.Identifier;
 import eu.socialedge.ddd.domain.repository.Repository;
 import eu.socialedge.ddd.domain.repository.RepositoryException;
 import lombok.val;
