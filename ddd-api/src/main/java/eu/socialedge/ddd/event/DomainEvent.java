@@ -1,8 +1,5 @@
 package eu.socialedge.ddd.event;
 
-import lombok.Getter;
-import lombok.experimental.Accessors;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -13,8 +10,11 @@ import java.time.LocalDateTime;
  * @see <a href="https://martinfowler.com/eaaDev/DomainEvent.html">
  *     Domain Event - Martin Fowler</a>
  */
-@Getter @Accessors(fluent = true)
 public abstract class DomainEvent implements Serializable {
 
     protected final LocalDateTime creationTime = LocalDateTime.now();
+
+    public LocalDateTime creationTime() {
+        return creationTime;
+    }
 }

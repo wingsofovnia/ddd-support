@@ -2,10 +2,9 @@ package eu.socialedge.ddd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import eu.socialedge.ddd.domain.id.Identifier;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
@@ -35,13 +34,11 @@ import static org.apache.commons.lang3.Validate.notNull;
  *
  * @param <T> concrete {@link Identifier} type implementation
  */
-@EqualsAndHashCode
-@Accessors(fluent = true)
-@NoArgsConstructor(force = true)
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor(force = true, access = AccessLevel.PROTECTED) // Required by JPA
 @MappedSuperclass @Access(AccessType.FIELD)
 public abstract class Entity<T extends Identifier<?>> {
 
-    @Getter
     @EmbeddedId
     protected final T id;
 
@@ -51,5 +48,9 @@ public abstract class Entity<T extends Identifier<?>> {
 
     protected Entity(T id) {
         this.id = notNull(id);
+    }
+
+    public T id() {
+        return id;
     }
 }

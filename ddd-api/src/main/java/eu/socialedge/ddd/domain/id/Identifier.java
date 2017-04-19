@@ -3,10 +3,9 @@ package eu.socialedge.ddd.domain.id;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import eu.socialedge.ddd.domain.ValueObject;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -29,10 +28,8 @@ import java.util.Objects;
  *
  * @param <T> internal identifier's type
  */
-@Getter
-@Accessors(fluent = true)
 @EqualsAndHashCode(callSuper = false)
-@NoArgsConstructor(force = true)
+@NoArgsConstructor(force = true, access = AccessLevel.PROTECTED) // Required by JPA
 @MappedSuperclass @Access(AccessType.FIELD)
 public abstract class Identifier<T extends Serializable> implements ValueObject {
 
@@ -42,6 +39,10 @@ public abstract class Identifier<T extends Serializable> implements ValueObject 
     @JsonCreator
     public Identifier(T value) {
         this.value = Objects.requireNonNull(value);
+    }
+
+    public T value() {
+        return value;
     }
 
     @JsonValue
