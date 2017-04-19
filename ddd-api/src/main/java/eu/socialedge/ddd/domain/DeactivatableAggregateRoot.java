@@ -1,17 +1,17 @@
 package eu.socialedge.ddd.domain;
 
 import eu.socialedge.ddd.domain.id.Identifier;
-import lombok.Getter;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-@Getter @Accessors(fluent = true)
-@NoArgsConstructor(force = true)
+@EqualsAndHashCode(callSuper = true, of = "isActive")
+@NoArgsConstructor(force = true, access = AccessLevel.PROTECTED) // Required by JPA
 @MappedSuperclass @Access(AccessType.FIELD)
 public abstract class DeactivatableAggregateRoot<T extends Identifier<?>> extends AggregateRoot<T> {
 
@@ -33,5 +33,9 @@ public abstract class DeactivatableAggregateRoot<T extends Identifier<?>> extend
 
     public void deactivate() {
         isActive = false;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 }
