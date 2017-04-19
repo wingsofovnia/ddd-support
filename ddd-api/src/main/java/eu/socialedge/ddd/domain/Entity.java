@@ -1,6 +1,7 @@
 package eu.socialedge.ddd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import eu.socialedge.ddd.domain.id.Identifier;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,7 +42,6 @@ import static org.apache.commons.lang3.Validate.notNull;
 public abstract class Entity<T extends Identifier<?>> {
 
     @Getter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EmbeddedId
     protected final T id;
 
