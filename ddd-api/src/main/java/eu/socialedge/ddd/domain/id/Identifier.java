@@ -2,14 +2,16 @@ package eu.socialedge.ddd.domain.id;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import eu.socialedge.ddd.domain.*;
-import lombok.AccessLevel;
+import eu.socialedge.ddd.domain.ValueObject;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -32,7 +34,7 @@ import java.util.Objects;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
 @MappedSuperclass @Access(AccessType.FIELD)
-public abstract class Identifier<T extends Serializable> extends ValueObject {
+public abstract class Identifier<T extends Serializable> implements ValueObject {
 
     @Column(name = "value", nullable = false)
     protected final T value;

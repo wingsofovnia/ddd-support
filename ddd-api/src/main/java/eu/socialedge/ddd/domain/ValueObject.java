@@ -16,5 +16,5 @@ import java.io.Serializable;
  * @see <a href="https://goo.gl/4UpUV8">
  *     Domain-Driven Design and Spring - Oliver Gierke</a>
  */
-public abstract class ValueObject implements Serializable {
+public interface ValueObject extends Serializable {
 }
